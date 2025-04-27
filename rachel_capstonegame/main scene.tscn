@@ -14,12 +14,12 @@ size = Vector2(291, 68)
 [node name="Node2D" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [228.0, 324.0]
 
-[node name="Node2D" parent="." instance=ExtResource("1_ypirc")]
-position = Vector2(-156, -5)
+[node name="background_sky" parent="." instance=ExtResource("1_ypirc")]
+position = Vector2(-155, -31)
 scale = Vector2(1.2, 1.2)
 
-[node name="cloud" parent="." instance=ExtResource("1_w1sh3")]
-position = Vector2(270, 31)
+[node name="moving cloud" parent="." instance=ExtResource("1_w1sh3")]
+position = Vector2(292, 56)
 
 [node name="start platform" type="StaticBody2D" parent="."]
 position = Vector2(1, 255)
@@ -43,13 +43,13 @@ offset_bottom = 323.0
 color = Color(0.509804, 0.596078, 1, 1)
 
 [node name="star" parent="." instance=ExtResource("2_loiko")]
-position = Vector2(567, 32)
+position = Vector2(571, 120)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_i7x1n")]
 position = Vector2(41, 244)
 script = ExtResource("4_i2hws")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(177, 162)
+position = Vector2(175, 146)
 zoom = Vector2(2, 2)
 script = ExtResource("6_o5rce")

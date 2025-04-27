@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d065a7x4xgdax"
-path="res://.godot/imported/Fox Sprite Sheet.png-07908dbd26cad2421bc0ca025340c80d.ctex"
+uid="uid://ytinpwt0c8pt"
+path="res://.godot/imported/4.png-da4c8aaec1afcafa123a803c7bd92ad0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fox Sprite Sheet.png"
-dest_files=["res://.godot/imported/Fox Sprite Sheet.png-07908dbd26cad2421bc0ca025340c80d.ctex"]
+source_file="res://Assets/background sky/4.png"
+dest_files=["res://.godot/imported/4.png-da4c8aaec1afcafa123a803c7bd92ad0.ctex"]
 
 [params]
 

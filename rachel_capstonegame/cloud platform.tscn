@@ -1,18 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://5nk2fhfe04xy"]
+[gd_scene load_steps=3 format=3 uid="uid://5nk2fhfe04xy"]
+
+[ext_resource type="Texture2D" uid="uid://bunnlp0abimoe" path="res://Assets/cloud platform/Cloud 1.png" id="1_ox3tv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aputb"]
-size = Vector2(114, 31)
+size = Vector2(114, 24)
 
 [node name="Node2D" type="Node2D"]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -57.0
-offset_top = -15.0
-offset_right = 57.0
-offset_bottom = 16.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_aputb")
+
+[node name="Cloud1" type="Sprite2D" parent="Area2D"]
+position = Vector2(1, -3)
+scale = Vector2(1.19388, 1.19388)
+texture = ExtResource("1_ox3tv")
