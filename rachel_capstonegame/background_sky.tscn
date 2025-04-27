@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx5q0cyt5lxdj"]
+
+[ext_resource type="Texture2D" uid="uid://cnucc3yeen62y" path="res://background sky/1.png" id="1_4dwvx"]
+[ext_resource type="Texture2D" uid="uid://d11fgej28ej4" path="res://background sky/2.png" id="2_5ggay"]
+[ext_resource type="Texture2D" uid="uid://t1b08od8h0hp" path="res://background sky/3.png" id="3_txskm"]
+[ext_resource type="Texture2D" uid="uid://ytinpwt0c8pt" path="res://background sky/4.png" id="4_fl3mw"]
+[ext_resource type="Texture2D" uid="uid://ep2ufvr2l0ll" path="res://background sky/5.png" id="5_twuis"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="1" type="Sprite2D" parent="."]
+position = Vector2(288, 162)
+texture = ExtResource("1_4dwvx")
+
+[node name="2" type="Sprite2D" parent="."]
+position = Vector2(288, 162)
+texture = ExtResource("2_5ggay")
+
+[node name="3" type="Sprite2D" parent="."]
+position = Vector2(288, 162)
+texture = ExtResource("3_txskm")
+
+[node name="4" type="Sprite2D" parent="."]
+position = Vector2(288, 161)
+texture = ExtResource("4_fl3mw")
+
+[node name="5" type="Sprite2D" parent="."]
+position = Vector2(288, 162)
+texture = ExtResource("5_twuis")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(576, 0)
+
+[node name="1" type="Sprite2D" parent="Node2D"]
+position = Vector2(288, 162)
+texture = ExtResource("1_4dwvx")
+
+[node name="2" type="Sprite2D" parent="Node2D"]
+position = Vector2(288, 162)
+texture = ExtResource("2_5ggay")
+
+[node name="3" type="Sprite2D" parent="Node2D"]
+position = Vector2(288, 162)
+texture = ExtResource("3_txskm")
+
+[node name="4" type="Sprite2D" parent="Node2D"]
+position = Vector2(288, 161)
+texture = ExtResource("4_fl3mw")
+flip_h = true
+
+[node name="5" type="Sprite2D" parent="Node2D"]
+position = Vector2(287, 162)
+texture = ExtResource("5_twuis")

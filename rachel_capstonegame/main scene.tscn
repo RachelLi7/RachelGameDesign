@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnna6d5bk4te0"]
+
+[ext_resource type="PackedScene" uid="uid://5nk2fhfe04xy" path="res://cloud platform.tscn" id="1_w1sh3"]
+[ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://background_sky.tscn" id="1_ypirc"]
+[ext_resource type="Script" path="res://start platform.gd" id="2_devd2"]
+[ext_resource type="PackedScene" uid="uid://bk1vmv1hchorx" path="res://stars.tscn" id="2_loiko"]
+[ext_resource type="PackedScene" uid="uid://c4fqfjkv1lsqc" path="res://character.tscn" id="3_i7x1n"]
+[ext_resource type="Script" path="res://character.gd" id="4_i2hws"]
+[ext_resource type="Script" path="res://camera.gd" id="6_o5rce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jja3u"]
+size = Vector2(291, 68)
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [228.0, 324.0]
+
+[node name="Node2D" parent="." instance=ExtResource("1_ypirc")]
+position = Vector2(-156, -5)
+scale = Vector2(1.2, 1.2)
+
+[node name="cloud" parent="." instance=ExtResource("1_w1sh3")]
+position = Vector2(270, 31)
+
+[node name="start platform" type="StaticBody2D" parent="."]
+position = Vector2(1, 255)
+script = ExtResource("2_devd2")
+
+[node name="start" type="ColorRect" parent="start platform"]
+offset_left = -113.0
+offset_right = 179.0
+offset_bottom = 68.0
+color = Color(0.509804, 0.596078, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="start platform"]
+position = Vector2(33.5, 34)
+shape = SubResource("RectangleShape2D_jja3u")
+
+[node name="end" type="ColorRect" parent="."]
+offset_left = 972.0
+offset_top = 262.0
+offset_right = 1151.0
+offset_bottom = 323.0
+color = Color(0.509804, 0.596078, 1, 1)
+
+[node name="star" parent="." instance=ExtResource("2_loiko")]
+position = Vector2(567, 32)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_i7x1n")]
+position = Vector2(41, 244)
+script = ExtResource("4_i2hws")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(177, 162)
+zoom = Vector2(2, 2)
+script = ExtResource("6_o5rce")
