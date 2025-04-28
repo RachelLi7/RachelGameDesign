@@ -17,6 +17,7 @@ const CLOUD_SCENE = preload("res://cloud platform.tscn")
 # 变量
 # @onready var state_root: State_root = $state_root
 var move_dir = Vector2(1, 0)
+var current_state = "idle"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _ready() -> void:
 	if has_node("Cloud1"):
 		$Cloud1.texture = CLOUD_TEXTURES.pick_random()
 	
+	current_state = "idle"
 	# state_root.now_state = "idle"
 	
 	# 等待一下再开始创建新的云
