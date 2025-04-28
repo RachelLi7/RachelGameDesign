@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("up") and is_on_floor():
+		animated_sprite_2d.play("jump")
 		velocity.y = jump_velocity
 		
 

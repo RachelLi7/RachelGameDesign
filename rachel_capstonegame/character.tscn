@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://c4fqfjkv1lsqc"]
 
-[ext_resource type="Texture2D" path="res://Fox Sprite Sheet.png" id="1_c3wns"]
+[ext_resource type="Texture2D" uid="uid://e0tj5qai2usq" path="res://Assets/Fox Sprite Sheet.png" id="1_c3wns"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0av4r"]
 atlas = ExtResource("1_c3wns")
@@ -199,7 +199,8 @@ position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_sujfx")
 animation = &"jump"
 autoplay = "default"
-frame_progress = 0.139958
+frame = 1
+frame_progress = 0.00942285
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3.97364e-08, -0.666667)

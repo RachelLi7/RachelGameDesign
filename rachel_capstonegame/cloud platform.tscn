@@ -1,19 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://5nk2fhfe04xy"]
 
-[ext_resource type="Texture2D" uid="uid://bunnlp0abimoe" path="res://Assets/cloud platform/Cloud 1.png" id="1_ox3tv"]
+[ext_resource type="Texture2D" uid="uid://bol1t0n2p1ron" path="res://Assets/cloud platform/Cloud 3.png" id="1_vnisg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aputb"]
-size = Vector2(114, 24)
+size = Vector2(140, 17)
 
-[node name="Node2D" type="Node2D"]
+[node name="Area2D" type="Area2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Cloud3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0.968627, 1)
+position = Vector2(3, 4)
+scale = Vector2(1.48148, 1.48148)
+texture = ExtResource("1_vnisg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 7.5)
 shape = SubResource("RectangleShape2D_aputb")
 
-[node name="Cloud1" type="Sprite2D" parent="Area2D"]
-position = Vector2(1, -3)
-scale = Vector2(1.19388, 1.19388)
-texture = ExtResource("1_ox3tv")
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3, 7.5)
+shape = SubResource("RectangleShape2D_aputb")
