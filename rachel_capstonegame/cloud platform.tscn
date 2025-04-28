@@ -5,17 +5,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aputb"]
 size = Vector2(140, 17)
 
-[node name="Area2D" type="Area2D"]
+[node name="cloud" type="Node2D"]
 
 [node name="Cloud3" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.968627, 1)
 position = Vector2(3, 4)
 scale = Vector2(1.48148, 1.48148)
 texture = ExtResource("1_vnisg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 7.5)
-shape = SubResource("RectangleShape2D_aputb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

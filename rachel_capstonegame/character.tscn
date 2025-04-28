@@ -199,8 +199,6 @@ position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_sujfx")
 animation = &"jump"
 autoplay = "default"
-frame = 1
-frame_progress = 0.00942285
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3.97364e-08, -0.666667)

@@ -1,44 +1,66 @@
-extends Area2D
+extends Node2D
 
-@export var move_speed: float = 150.0 # 左右移动速度
-@export var fall_speed: float = 300.0 # 下落速度
-@export var move_range: float = 200.0 # 左右移动范围
-@export var scroll_speed: float = 100.0 # 屏幕右推速度
+# 允许外部识别
+class_name CloudManager
 
-var start_position: Vector2
-var moving_right: bool = true
-var is_falling: bool = false
+# 常量
+const CLOUD_TEXTURES = [
+	preload("res://Assets/cloud platform/Cloud 1.png"),
+	preload("res://Assets/cloud platform/Cloud 3.png"),
+	preload("res://Assets/cloud platform/Cloud 4.png"),
+	preload("res://Assets/cloud platform/Cloud 7.png"),
+	preload("res://Assets/cloud platform/Cloud 10.png"),
+]
 
-func _ready():
-	start_position = global_position
+const CLOUD_SCENE = preload("res://cloud platform.tscn")
 
-func _physics_process(delta):
-	# 不管是移动还是掉落，都要往右漂移（跟随镜头）
-	# global_position.x += scroll_speed * delta
+# 变量
+# @onready var state_root: State_root = $state_root
+var move_dir = Vector2(1, 0)
 
-	if not is_falling:
-		global_position.x +=scroll_speed * delta
-		
-	if is_falling:
-		# 正在下落
-		global_position.y += fall_speed * delta
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	add_to_group("cloud_creator")
+	randomize()
+	
+	# 如果自己有贴图，随机赋值
+	if has_node("Cloud1"):
+		$Cloud1.texture = CLOUD_TEXTURES.pick_random()
+	
+	# state_root.now_state = "idle"
+	
+	# 等待一下再开始创建新的云
+	await get_tree().create_timer(0.1).timeout
+	create_new_cloud()
+
+# Called every frame
+func _physics_process(delta: float) -> void:
+	# state_root.run(delta)
+	move(delta)
+
+# 创建新的云朵
+func create_new_cloud() -> void:
+	var new_cloud = CLOUD_SCENE.instantiate()
+	new_cloud.global_position = Vector2(100000, 100000) # 初始位置
+	get_tree().get_first_node_in_group("map").add_child(new_cloud)
+
+# 让自己移动（可以左右或向下）
+func move(delta: float) -> void:
+	var camera = get_tree().get_first_node_in_group("camera")
+	if camera == null:
+		return
+	
+	var left_pos = camera.trans(Vector2(0, 0))
+	var right_pos = camera.trans(Vector2(1200, 0))
+	
+	if move_dir == Vector2(1, 0):
+		global_position += move_dir * delta * Vector2(150, 0)
+	elif move_dir == Vector2(-1, 0):
+		global_position += move_dir * delta * Vector2(150, 0)
 	else:
-		# 左右来回移动
-		if moving_right:
-			global_position.x += move_speed * delta
-			if global_position.x >= start_position.x + move_range:
-				moving_right = false
-		else:
-			global_position.x -= move_speed * delta
-			if global_position.x <= start_position.x - move_range:
-				moving_right = true
+		# 默认往下掉
+		global_position.y += 120 * delta
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not is_falling:
-			is_falling = true
-
-func _on_MovingPlatform_body_entered(body):
-	if is_falling:
-		is_falling = false
-		set_physics_process(false) # 停止一切动作，固定下来
+# 当云朵离开屏幕时
+func _on_visible_screen_notifier_2d_screen_exited() -> void:
+	move_dir.x *= -1
