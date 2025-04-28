@@ -510,10 +510,6 @@ metadata/_edit_horizontal_guides_ = [228.0, 324.0, 256.0]
 position = Vector2(-155, -31)
 scale = Vector2(1.2, 1.2)
 
-[node name="moving cloud" parent="." instance=ExtResource("1_w1sh3")]
-position = Vector2(174, 36)
-script = ExtResource("3_r1u1u")
-
 [node name="start platform" type="StaticBody2D" parent="."]
 position = Vector2(1, 255)
 script = ExtResource("2_devd2")
@@ -541,10 +537,15 @@ shape = SubResource("RectangleShape2D_grdbo")
 position = Vector2(571, 120)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_i7x1n")]
-position = Vector2(41, 244)
+position = Vector2(-12, 214)
 script = ExtResource("4_i2hws")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(46, 146)
+position = Vector2(144, 150)
 zoom = Vector2(2, 2)
 script = ExtResource("6_o5rce")
+scroll_speed = 10.0
+
+[node name="moving cloud" parent="Camera2D" instance=ExtResource("1_w1sh3")]
+position = Vector2(30, -114)
+script = ExtResource("3_r1u1u")

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bol1t0n2p1ron" path="res://Assets/cloud platform/Cloud 3.png" id="1_vnisg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aputb"]
-size = Vector2(140, 17)
+size = Vector2(130, 17)
 
 [node name="cloud" type="Node2D"]
 
@@ -13,10 +13,10 @@ position = Vector2(3, 4)
 scale = Vector2(1.48148, 1.48148)
 texture = ExtResource("1_vnisg")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="AnimatableBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(3, 7.5)
+position = Vector2(4, 7.5)
 shape = SubResource("RectangleShape2D_aputb")
 
 [node name="Node" type="Node" parent="."]

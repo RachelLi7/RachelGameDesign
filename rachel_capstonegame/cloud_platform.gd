@@ -31,37 +31,35 @@ func _ready() -> void:
 	current_state = "idle"
 	# state_root.now_state = "idle"
 	
+	start_position = position.x
+	
 	# 等待一下再开始创建新的云
-	await get_tree().create_timer(0.1).timeout
-	create_new_cloud()
+	# await get_tree().create_timer(0.1).timeout
+	# create_new_cloud()
 
 # Called every frame
 func _physics_process(delta: float) -> void:
-	# state_root.run(delta)
 	move(delta)
 
 # 创建新的云朵
-func create_new_cloud() -> void:
-	var new_cloud = CLOUD_SCENE.instantiate()
-	new_cloud.global_position = Vector2(100000, 100000) # 初始位置
-	get_tree().get_first_node_in_group("map").add_child(new_cloud)
+# func create_new_cloud() -> void:
+	 # var new_cloud = CLOUD_SCENE.instantiate()
+	 # new_cloud.global_position = Vector2(100000, 100000) # 初始位置
+	 # get_tree().get_first_node_in_group("map").add_child(new_cloud)
+	
+	
+# cloud move left and right
+@export var cloud_distence = 200
+@export var speed = 1
+var start_position
 
-# 让自己移动（可以左右或向下）
 func move(delta: float) -> void:
-	var camera = get_tree().get_first_node_in_group("camera")
-	if camera == null:
-		return
+	position.x += speed
+	if position.x >= start_position + cloud_distence:
+		speed = -speed
+	elif position.x <= start_position - cloud_distence:
+		speed = -speed  
 	
-	var left_pos = camera.trans(Vector2(0, 0))
-	var right_pos = camera.trans(Vector2(1200, 0))
-	
-	if move_dir == Vector2(1, 0):
-		global_position += move_dir * delta * Vector2(150, 0)
-	elif move_dir == Vector2(-1, 0):
-		global_position += move_dir * delta * Vector2(150, 0)
-	else:
-		# 默认往下掉
-		global_position.y += 120 * delta
 
 # 当云朵离开屏幕时
 func _on_visible_screen_notifier_2d_screen_exited() -> void:

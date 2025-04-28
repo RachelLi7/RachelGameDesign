@@ -10,3 +10,8 @@ position = Vector2(-2, -1)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(546, 161)
 zoom = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Starcatcher"
