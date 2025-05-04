@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmfcyvuqy0w62"]
+
+[ext_resource type="Script" path="res://Scripts/Begin_Scene.gd" id="1_pcjig"]
+[ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="2_h7tag"]
+[ext_resource type="FontFile" uid="uid://rjep0e387sn7" path="res://Assets/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="3_nlqgw"]
+[ext_resource type="Texture2D" uid="uid://befuc0kxxrp5x" path="res://Assets/star.png" id="4_jiftm"]
+[ext_resource type="Texture2D" uid="uid://b3oifd8dummuq" path="res://Assets/cloud platform/Cloud 7.png" id="5_v7c5b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8bf61"]
+font = ExtResource("3_nlqgw")
+font_size = 60
+outline_size = 15
+outline_color = Color(0.878787, 0.549365, 0.522995, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w8jpp"]
+texture = ExtResource("5_v7c5b")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6wj4"]
+texture = ExtResource("5_v7c5b")
+
+[node name="Begin Scene" type="Node2D"]
+script = ExtResource("1_pcjig")
+
+[node name="background" parent="." instance=ExtResource("2_h7tag")]
+position = Vector2(-2, -1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(546, 161)
+zoom = Vector2(2, 2)
+
+[node name="Title" type="Label" parent="."]
+texture_filter = 1
+offset_left = 401.0
+offset_top = 91.0
+offset_right = 697.0
+offset_bottom = 159.0
+text = "Starcatcher"
+label_settings = SubResource("LabelSettings_8bf61")
+
+[node name="Star_right" type="Sprite2D" parent="Title"]
+position = Vector2(326, 4.00003)
+rotation = 0.251327
+scale = Vector2(0.0472533, 0.0472533)
+texture = ExtResource("4_jiftm")
+
+[node name="Star_left" type="Sprite2D" parent="Title"]
+position = Vector2(-26, 60)
+rotation = -0.376991
+scale = Vector2(0.0472533, 0.0472533)
+texture = ExtResource("4_jiftm")
+
+[node name="Start" type="Button" parent="."]
+texture_filter = 1
+offset_left = 492.0
+offset_top = 175.0
+offset_right = 605.0
+offset_bottom = 214.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.878431, 0.54902, 0.521569, 1)
+theme_override_fonts/font = ExtResource("3_nlqgw")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/hover = SubResource("StyleBoxTexture_w8jpp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_a6wj4")
+text = "Start"
+
+[node name="Tutorial" type="Button" parent="."]
+texture_filter = 1
+offset_left = 492.0
+offset_top = 226.0
+offset_right = 605.0
+offset_bottom = 265.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.878431, 0.54902, 0.521569, 1)
+theme_override_fonts/font = ExtResource("3_nlqgw")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/hover = SubResource("StyleBoxTexture_w8jpp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_a6wj4")
+text = "Tutorial"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]

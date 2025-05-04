@@ -1,13 +1,16 @@
-[gd_scene load_steps=15 format=4 uid="uid://dbly5830dab1e"]
+[gd_scene load_steps=19 format=4 uid="uid://g3wdqglmj87e"]
 
-[ext_resource type="PackedScene" uid="uid://d4g3dout8m41v" path="res://Scene/cloud platform.tscn" id="1_w1sh3"]
+[ext_resource type="Script" path="res://Scripts/main_scene.gd" id="1_qu3xc"]
 [ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="1_ypirc"]
 [ext_resource type="PackedScene" uid="uid://t20soxfr7qtq" path="res://Scene/stars.tscn" id="2_loiko"]
 [ext_resource type="PackedScene" uid="uid://or6unedhd5cj" path="res://Scene/character.tscn" id="3_i7x1n"]
+[ext_resource type="Script" path="res://Scripts/stars.gd" id="3_u7lhu"]
 [ext_resource type="Script" path="res://Scripts/end_platform.gd" id="4_dbjjv"]
 [ext_resource type="Texture2D" uid="uid://b6v8aoonbp717" path="res://Assets/StartEndPlatform_tileset.png" id="4_gcibh"]
 [ext_resource type="Script" path="res://Scripts/start_platform.gd" id="6_xqqbo"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="7_qv6hn"]
+[ext_resource type="PackedScene" uid="uid://bf30xp114dq7c" path="res://Scene/cloud_creator.tscn" id="9_algkx"]
+[ext_resource type="PackedScene" uid="uid://bhj3ha2rp7o8v" path="res://Scene/portal.tscn" id="10_7epa8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2mdxv"]
 texture = ExtResource("4_gcibh")
@@ -501,7 +504,67 @@ sources/0 = SubResource("TileSetAtlasSource_ishio")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grdbo"]
 size = Vector2(236, 110)
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="GDScript" id="GDScript_sckqh"]
+script/source = "extends CharacterBody2D
+
+
+@export var speed: float = 100.0
+@export var jump_velocity: float = -400.0
+@export var gravity: float = 900.0
+
+var is_dead = false
+@export var death_jump_velocity: float = -300.0
+
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
+func _physics_process(delta: float) -> void:
+	
+	# dead situiation
+	if is_dead:
+		velocity.y += gravity * delta
+		move_and_slide()
+		return
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"up\") and is_on_floor():
+		animated_sprite_2d.play(\"jump\")
+		velocity.y = jump_velocity
+		
+
+	# Get the input direction and handle the movement/deceleration.
+	var direction = Input.get_axis(\"left\", \"right\")
+	if direction:
+		animated_sprite_2d.play(\"walk\")
+		velocity.x = direction * speed
+		
+		if direction == -1:
+			animated_sprite_2d.flip_h = true
+		else:
+			animated_sprite_2d.flip_h = false
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		animated_sprite_2d.play(\"default\")
+	
+	
+	
+	move_and_slide()
+	
+	
+func game_over():
+	if is_dead: 
+		return
+	is_dead = true
+	velocity.x = 0
+	velocity.y = death_jump_velocity
+	
+"
+
+[node name="level 1" type="Node2D"]
+script = ExtResource("1_qu3xc")
 metadata/_edit_horizontal_guides_ = [228.0, 324.0, 256.0]
 
 [node name="background_sky" parent="." instance=ExtResource("1_ypirc")]
@@ -510,6 +573,7 @@ scale = Vector2(1.2, 1.2)
 
 [node name="start platform" type="StaticBody2D" parent="."]
 position = Vector2(1, 255)
+script = ExtResource("3_u7lhu")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="start platform"]
 tile_map_data = PackedByteArray("AAAAAP//AAASAAkAAAAAAAAAAAASAAoAAAAAAAEAAAASAAsAAAAAAAIAAAASAAwAAAAAAAMAAAASAA0AAAAAAAQAAAASAA4AAAAAAAUAAAASAA8AAAABAP//AAATAAkAAAABAAAAAAATAAoAAAABAAEAAAATAAsAAAABAAIAAAATAAwAAAABAAMAAAATAA0AAAABAAQAAAATAA4AAAABAAUAAAATAA8AAAACAP//AAAUAAkAAAACAAAAAAAUAAoAAAACAAEAAAAUAAsAAAACAAIAAAAUAAwAAAACAAMAAAAUAA0AAAACAAQAAAAUAA4AAAACAAUAAAAUAA8AAAADAP//AAAVAAkAAAADAAAAAAAVAAoAAAADAAEAAAAVAAsAAAADAAIAAAAVAAwAAAADAAMAAAAVAA0AAAADAAQAAAAVAA4AAAADAAUAAAAVAA8AAAAEAP//AAAWAAkAAAAEAAAAAAAWAAoAAAAEAAEAAAAWAAsAAAAEAAIAAAAWAAwAAAAEAAMAAAAWAA0AAAAEAAQAAAAWAA4AAAAEAAUAAAAWAA8AAAAFAP//AAASAAkAAAAFAAAAAAASAAoAAAAFAAEAAAASAAsAAAAFAAIAAAASAAwAAAAFAAMAAAASAA0AAAAFAAQAAAASAA4AAAAFAAUAAAASAA8AAAAGAP//AAATAAkAAAAGAAAAAAATAAoAAAAGAAEAAAATAAsAAAAGAAIAAAATAAwAAAAGAAMAAAATAA0AAAAGAAQAAAATAA4AAAAGAAUAAAATAA8AAAAHAP//AAAUAAkAAAAHAAAAAAAUAAoAAAAHAAEAAAAUAAsAAAAHAAIAAAAUAAwAAAAHAAMAAAAUAA0AAAAHAAQAAAAUAA4AAAAHAAUAAAAUAA8AAAAIAP//AAAVAAkAAAAIAAAAAAAVAAoAAAAIAAEAAAAVAAsAAAAIAAIAAAAVAAwAAAAIAAMAAAAVAA0AAAAIAAQAAAAVAA4AAAAIAAUAAAAVAA8AAAAJAP//AAAWAAkAAAAJAAAAAAAWAAoAAAAJAAEAAAAWAAsAAAAJAAIAAAAWAAwAAAAJAAMAAAAWAA0AAAAJAAQAAAAWAA4AAAAJAAUAAAAWAA8AAAD7////AAASAAkAAAD7/wAAAAASAAoAAAD7/wEAAAASAAsAAAD7/wIAAAASAAwAAAD7/wMAAAASAA0AAAD7/wQAAAASAA4AAAD7/wUAAAASAA8AAAD8////AAATAAkAAAD8/wAAAAATAAoAAAD8/wEAAAATAAsAAAD8/wIAAAATAAwAAAD8/wMAAAATAA0AAAD8/wQAAAATAA4AAAD8/wUAAAATAA8AAAD9////AAAUAAkAAAD9/wAAAAAUAAoAAAD9/wEAAAAUAAsAAAD9/wIAAAAUAAwAAAD9/wMAAAAUAA0AAAD9/wQAAAAUAA4AAAD9/wUAAAAUAA8AAAD+////AAAVAAkAAAD+/wAAAAAVAAoAAAD+/wEAAAAVAAsAAAD+/wIAAAAVAAwAAAD+/wMAAAAVAA0AAAD+/wQAAAAVAA4AAAD+/wUAAAAVAA8AAAD/////AAAWAAkAAAD//wAAAAAWAAoAAAD//wEAAAAWAAsAAAD//wIAAAAWAAwAAAD//wMAAAAWAA0AAAD//wQAAAAWAA4AAAD//wUAAAAWAA8AAAAKAP//AAAYAAEAAAAKAAAAAAAYAAIAAAAKAAEAAAAYAAMAAAAKAAIAAAAYAAQAAAAKAAMAAAAYAAUAAAAKAAQAAAAYAAYAAAAKAAUAAAAYAAcAAAALAP//AAAZAAEAAAALAAAAAAAZAAIAAAALAAEAAAAZAAMAAAALAAIAAAAZAAQAAAALAAMAAAAZAAUAAAALAAQAAAAZAAYAAAALAAUAAAAZAAcAAAD5////AAAUAAEAAAD5/wAAAAAUAAIAAAD5/wEAAAAUAAMAAAD5/wIAAAAUAAQAAAD5/wMAAAAUAAUAAAD5/wQAAAAUAAYAAAD5/wUAAAAUAAcAAAD6////AAAVAAEAAAD6/wAAAAAVAAIAAAD6/wEAAAAVAAMAAAD6/wIAAAAVAAQAAAD6/wMAAAAVAAUAAAD6/wQAAAAVAAYAAAD6/wUAAAAVAAcAAAA=")
@@ -521,6 +585,7 @@ shape = SubResource("RectangleShape2D_jja3u")
 script = ExtResource("6_xqqbo")
 
 [node name="end platform" type="StaticBody2D" parent="."]
+script = ExtResource("4_dbjjv")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="end platform"]
 tile_map_data = PackedByteArray("AAA8AA8AAAAUAAEAAAA8ABAAAAAUAAIAAAA8ABEAAAAUAAMAAAA8ABIAAAAUAAQAAAA8ABMAAAAUAAUAAAA8ABQAAAAUAAYAAAA8ABUAAAAUAAcAAAA9AA8AAAAVAAEAAAA9ABAAAAAVAAIAAAA9ABEAAAAVAAMAAAA9ABIAAAAVAAQAAAA9ABMAAAAVAAUAAAA9ABQAAAAVAAYAAAA9ABUAAAAVAAcAAABKAA8AAAAYAAEAAABKABAAAAAYAAIAAABKABEAAAAYAAMAAABKABIAAAAYAAQAAABKABMAAAAYAAUAAABKABQAAAAYAAYAAABKABUAAAAYAAcAAABLAA8AAAAZAAEAAABLABAAAAAZAAIAAABLABEAAAAZAAMAAABLABIAAAAZAAQAAABLABMAAAAZAAUAAABLABQAAAAZAAYAAABLABUAAAAZAAcAAAA+AA8AAAASAAkAAAA+ABAAAAASAAoAAAA+ABEAAAASAAsAAAA+ABIAAAASAAwAAAA+ABMAAAASAA0AAAA+ABQAAAASAA4AAAA+ABUAAAASAA8AAAA/AA8AAAATAAkAAAA/ABAAAAATAAoAAAA/ABEAAAATAAsAAAA/ABIAAAATAAwAAAA/ABMAAAATAA0AAAA/ABQAAAATAA4AAAA/ABUAAAATAA8AAABAAA8AAAAUAAkAAABAABAAAAAUAAoAAABAABEAAAAUAAsAAABAABIAAAAUAAwAAABAABMAAAAUAA0AAABAABQAAAAUAA4AAABAABUAAAAUAA8AAABBAA8AAAAVAAkAAABBABAAAAAVAAoAAABBABEAAAAVAAsAAABBABIAAAAVAAwAAABBABMAAAAVAA0AAABBABQAAAAVAA4AAABBABUAAAAVAA8AAABCAA8AAAAWAAkAAABCABAAAAAWAAoAAABCABEAAAAWAAsAAABCABIAAAAWAAwAAABCABMAAAAWAA0AAABCABQAAAAWAA4AAABCABUAAAAWAA8AAABDAA8AAAAXAAkAAABDABAAAAAXAAoAAABDABEAAAAXAAsAAABDABIAAAAXAAwAAABDABMAAAAXAA0AAABDABQAAAAXAA4AAABDABUAAAAXAA8AAABEAA8AAAASAAkAAABEABAAAAASAAoAAABEABEAAAASAAsAAABEABIAAAASAAwAAABEABMAAAASAA0AAABEABQAAAASAA4AAABEABUAAAASAA8AAABFAA8AAAATAAkAAABFABAAAAATAAoAAABFABEAAAATAAsAAABFABIAAAATAAwAAABFABMAAAATAA0AAABFABQAAAATAA4AAABFABUAAAATAA8AAABGAA8AAAAUAAkAAABGABAAAAAUAAoAAABGABEAAAAUAAsAAABGABIAAAAUAAwAAABGABMAAAAUAA0AAABGABQAAAAUAA4AAABGABUAAAAUAA8AAABHAA8AAAAVAAkAAABHABAAAAAVAAoAAABHABEAAAAVAAsAAABHABIAAAAVAAwAAABHABMAAAAVAA0AAABHABQAAAAVAA4AAABHABUAAAAVAA8AAABIAA8AAAAWAAkAAABIABAAAAAWAAoAAABIABEAAAAWAAsAAABIABIAAAAWAAwAAABIABMAAAAWAA0AAABIABQAAAAWAA4AAABIABUAAAAWAA8AAABJAA8AAAAXAAkAAABJABAAAAAXAAoAAABJABEAAAAXAAsAAABJABIAAAAXAAwAAABJABMAAAAXAA0AAABJABQAAAAXAA4AAABJABUAAAAXAA8AAAA=")
@@ -529,18 +594,29 @@ tile_set = SubResource("TileSet_6v64p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="end platform"]
 position = Vector2(1087, 309)
 shape = SubResource("RectangleShape2D_grdbo")
-script = ExtResource("4_dbjjv")
 
 [node name="star" parent="." instance=ExtResource("2_loiko")]
 position = Vector2(571, 120)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_i7x1n")]
-position = Vector2(-12, 214)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(144, 150)
 zoom = Vector2(2, 2)
 script = ExtResource("7_qv6hn")
 
-[node name="moving cloud" parent="Camera2D" instance=ExtResource("1_w1sh3")]
-position = Vector2(30, -114)
+[node name="cloud_creator" parent="." instance=ExtResource("9_algkx")]
+position = Vector2(2, 51)
+
+[node name="portal" parent="." instance=ExtResource("10_7epa8")]
+position = Vector2(1175, 235)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_i7x1n")]
+position = Vector2(-12, 214)
+script = SubResource("GDScript_sckqh")
+speed = 100.0
+jump_velocity = -400.0
+gravity = 900.0
+death_jump_velocity = -300.0
+
+[connection signal="area_entered" from="portal/AnimatedSprite2D/Area2D" to="." method="_on_area_2d_area_entered"]
+
+[editable path="portal"]
