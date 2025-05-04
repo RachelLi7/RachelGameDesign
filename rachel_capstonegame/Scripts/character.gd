@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		pass
 	
-	if not state_root.now_state in ["fall","die"]:
+	if not state_root.now_state in ["jump down","die"]:
 		change_dir()
 	move_and_slide()
 	state_root.run(delta)

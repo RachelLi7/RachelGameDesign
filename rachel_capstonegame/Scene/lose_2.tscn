@@ -1,27 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://cp58tx33uu4hl"]
+[gd_scene load_steps=9 format=3 uid="uid://ddpto2kmdxrss"]
 
-[ext_resource type="Script" path="res://Scripts/lose.gd" id="1_5a7ih"]
-[ext_resource type="FontFile" uid="uid://rjep0e387sn7" path="res://Assets/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="1_nmtu3"]
-[ext_resource type="Texture2D" uid="uid://b3oifd8dummuq" path="res://Assets/cloud platform/Cloud 7.png" id="2_cief0"]
-[ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="2_j4i5c"]
-[ext_resource type="Texture2D" uid="uid://befuc0kxxrp5x" path="res://Assets/star.png" id="3_ekowe"]
+[ext_resource type="Script" path="res://Scripts/lose_2.gd" id="1_yoc60"]
+[ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="2_13a45"]
+[ext_resource type="FontFile" uid="uid://rjep0e387sn7" path="res://Assets/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="3_vr30e"]
+[ext_resource type="Texture2D" uid="uid://b3oifd8dummuq" path="res://Assets/cloud platform/Cloud 7.png" id="4_s4ij2"]
+[ext_resource type="Texture2D" uid="uid://befuc0kxxrp5x" path="res://Assets/star.png" id="5_yfhw0"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sw1pm"]
-texture = ExtResource("2_cief0")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ahkv"]
+texture = ExtResource("4_s4ij2")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ig3p"]
-texture = ExtResource("2_cief0")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0rqoe"]
+texture = ExtResource("4_s4ij2")
 
-[sub_resource type="LabelSettings" id="LabelSettings_6r6u1"]
-font = ExtResource("1_nmtu3")
+[sub_resource type="LabelSettings" id="LabelSettings_6rtu5"]
+font = ExtResource("3_vr30e")
 font_size = 60
 outline_size = 15
 outline_color = Color(0.878787, 0.549365, 0.522995, 1)
 
-[node name="Lose" type="Node2D"]
-script = ExtResource("1_5a7ih")
+[node name="Lose 2" type="Node2D"]
+script = ExtResource("1_yoc60")
 
-[node name="background" parent="." instance=ExtResource("2_j4i5c")]
+[node name="background" parent="." instance=ExtResource("2_13a45")]
 position = Vector2(0, -1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -44,10 +44,10 @@ offset_right = 280.0
 offset_bottom = 181.0
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0.878431, 0.54902, 0.521569, 1)
-theme_override_fonts/font = ExtResource("1_nmtu3")
+theme_override_fonts/font = ExtResource("3_vr30e")
 theme_override_font_sizes/font_size = 10
-theme_override_styles/hover = SubResource("StyleBoxTexture_sw1pm")
-theme_override_styles/normal = SubResource("StyleBoxTexture_1ig3p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4ahkv")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0rqoe")
 text = "Try Again"
 
 [node name="Title" type="Label" parent="ColorRect"]
@@ -58,18 +58,18 @@ offset_top = 49.0
 offset_right = 357.0
 offset_bottom = 117.0
 text = "You Lose"
-label_settings = SubResource("LabelSettings_6r6u1")
+label_settings = SubResource("LabelSettings_6rtu5")
 
 [node name="Star_right" type="Sprite2D" parent="ColorRect/Title"]
 position = Vector2(262, 2)
 rotation = 0.251327
 scale = Vector2(0.0472533, 0.0472533)
-texture = ExtResource("3_ekowe")
+texture = ExtResource("5_yfhw0")
 
 [node name="Star_left" type="Sprite2D" parent="ColorRect/Title"]
 position = Vector2(-26, 60)
 rotation = -0.376991
 scale = Vector2(0.0472533, 0.0472533)
-texture = ExtResource("3_ekowe")
+texture = ExtResource("5_yfhw0")
 
 [connection signal="pressed" from="ColorRect/Try Again" to="." method="_on_try_again_pressed"]

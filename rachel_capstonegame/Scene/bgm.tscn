@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpi2r5biavela"]
+
+[ext_resource type="AudioStream" uid="uid://dxpq48bdoy0a" path="res://Assets/Cloud - Milktea Cute Happy Background Music.mp3" id="1_nt0ao"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_nt0ao")
+autoplay = true
+parameters/looping = true

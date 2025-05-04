@@ -19,4 +19,4 @@ func Animation_end(name):
 	if state_root.now_state == self.name and name == now_animation:
 		if now_animation == "jump up":
 			now_animation = "jump"
-			juese.animated_sprite.play("jump")
+	

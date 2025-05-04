@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ba3bh8dycw8xf"]
 
-[ext_resource type="Script" path="res://Scripts/success.gd" id="1_lbkn3"]
+[ext_resource type="Script" path="res://Scripts/success1.gd" id="1_lbkn3"]
 [ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="2_6msg8"]
 [ext_resource type="FontFile" uid="uid://rjep0e387sn7" path="res://Assets/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="2_h00ah"]
 [ext_resource type="Texture2D" uid="uid://b3oifd8dummuq" path="res://Assets/cloud platform/Cloud 7.png" id="3_qixme"]
@@ -18,7 +18,7 @@ font_size = 60
 outline_size = 15
 outline_color = Color(0.878787, 0.549365, 0.522995, 1)
 
-[node name="Success" type="Node2D"]
+[node name="Success1" type="Node2D"]
 script = ExtResource("1_lbkn3")
 
 [node name="background" parent="." instance=ExtResource("2_6msg8")]
@@ -35,7 +35,7 @@ offset_right = 788.0
 offset_bottom = 281.0
 color = Color(0.258824, 0.0941176, 0.0117647, 0.584314)
 
-[node name="Back to title" type="Button" parent="ColorRect"]
+[node name="Next Level" type="Button" parent="ColorRect"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 191.0
@@ -48,7 +48,7 @@ theme_override_fonts/font = ExtResource("2_h00ah")
 theme_override_font_sizes/font_size = 10
 theme_override_styles/hover = SubResource("StyleBoxTexture_fuhr1")
 theme_override_styles/normal = SubResource("StyleBoxTexture_d7muu")
-text = "Back to Title"
+text = "Next Level"
 
 [node name="Title" type="Label" parent="ColorRect"]
 texture_filter = 1
@@ -72,4 +72,4 @@ rotation = -0.376991
 scale = Vector2(0.0472533, 0.0472533)
 texture = ExtResource("4_ymvir")
 
-[connection signal="pressed" from="ColorRect/Back to title" to="." method="_on_back_to_title_pressed"]
+[connection signal="pressed" from="ColorRect/Next Level" to="." method="_on_back_to_title_pressed"]

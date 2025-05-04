@@ -13,9 +13,10 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if get_tree().get_node_count_in_group("star") == 0:
-		get_tree().change_scene_to_file("res://Scene/lose.tscn")
+		get_tree().change_scene_to_file("res://Scene/lose_2.tscn")
 	else: 
-		get_tree().change_scene_to_file("res://Scene/success.tscn")
+		get_tree().change_scene_to_file("res://Scene/success_2.tscn")
+
 
 func _on_falling_area_area_entered(area: Area2D) -> void:
-	get_tree().change_scene_to_file("res://Scene/lose.tscn")
+	get_tree().change_scene_to_file("res://Scene/lose_2.tscn")
