@@ -6,56 +6,113 @@
 [ext_resource type="Texture2D" uid="uid://ytinpwt0c8pt" path="res://Assets/background sky/4.png" id="4_fl3mw"]
 [ext_resource type="Texture2D" uid="uid://ep2ufvr2l0ll" path="res://Assets/background sky/5.png" id="5_twuis"]
 
-[node name="Node2D" type="Node2D"]
+[node name="background" type="Node2D"]
 
-[node name="1" type="Sprite2D" parent="."]
+[node name="part 1" type="Node2D" parent="."]
+
+[node name="1" type="Sprite2D" parent="part 1"]
 modulate = Color(0.913725, 0.854902, 0.87451, 1)
 position = Vector2(288, 162)
 texture = ExtResource("1_4dwvx")
 
-[node name="2" type="Sprite2D" parent="."]
+[node name="2" type="Sprite2D" parent="part 1"]
 position = Vector2(288, 162)
 texture = ExtResource("2_5ggay")
 
-[node name="3" type="Sprite2D" parent="."]
+[node name="3" type="Sprite2D" parent="part 1"]
 modulate = Color(1, 0.898039, 0.870588, 1)
 position = Vector2(288, 162)
 texture = ExtResource("3_txskm")
 
-[node name="4" type="Sprite2D" parent="."]
+[node name="4" type="Sprite2D" parent="part 1"]
 modulate = Color(1, 0.898039, 0.870588, 1)
 position = Vector2(288, 161)
 texture = ExtResource("4_fl3mw")
 
-[node name="5" type="Sprite2D" parent="."]
+[node name="5" type="Sprite2D" parent="part 1"]
 modulate = Color(1, 0.898039, 0.870588, 1)
 position = Vector2(288, 162)
 texture = ExtResource("5_twuis")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="part 2" type="Node2D" parent="."]
 position = Vector2(576, 0)
 
-[node name="1" type="Sprite2D" parent="Node2D"]
+[node name="1" type="Sprite2D" parent="part 2"]
 modulate = Color(0.913725, 0.854902, 0.87451, 1)
 position = Vector2(288, 162)
 texture = ExtResource("1_4dwvx")
 
-[node name="2" type="Sprite2D" parent="Node2D"]
+[node name="2" type="Sprite2D" parent="part 2"]
 position = Vector2(288, 162)
 texture = ExtResource("2_5ggay")
 
-[node name="3" type="Sprite2D" parent="Node2D"]
+[node name="3" type="Sprite2D" parent="part 2"]
 modulate = Color(1, 0.898039, 0.870588, 1)
 position = Vector2(288, 162)
 texture = ExtResource("3_txskm")
 
-[node name="4" type="Sprite2D" parent="Node2D"]
+[node name="4" type="Sprite2D" parent="part 2"]
 modulate = Color(1, 0.898039, 0.870588, 1)
 position = Vector2(288, 161)
 texture = ExtResource("4_fl3mw")
 flip_h = true
 
-[node name="5" type="Sprite2D" parent="Node2D"]
+[node name="5" type="Sprite2D" parent="part 2"]
 modulate = Color(1, 0.898039, 0.870588, 1)
 position = Vector2(287, 162)
+texture = ExtResource("5_twuis")
+
+[node name="part 3" type="Node2D" parent="."]
+position = Vector2(1727, 0)
+
+[node name="1" type="Sprite2D" parent="part 3"]
+modulate = Color(0.913725, 0.854902, 0.87451, 1)
+position = Vector2(288, 162)
+texture = ExtResource("1_4dwvx")
+
+[node name="2" type="Sprite2D" parent="part 3"]
+position = Vector2(288, 162)
+texture = ExtResource("2_5ggay")
+
+[node name="3" type="Sprite2D" parent="part 3"]
+modulate = Color(1, 0.898039, 0.870588, 1)
+position = Vector2(288, 162)
+texture = ExtResource("3_txskm")
+
+[node name="4" type="Sprite2D" parent="part 3"]
+modulate = Color(1, 0.898039, 0.870588, 1)
+position = Vector2(288, 161)
+texture = ExtResource("4_fl3mw")
+flip_h = true
+
+[node name="5" type="Sprite2D" parent="part 3"]
+modulate = Color(1, 0.898039, 0.870588, 1)
+position = Vector2(287, 162)
+texture = ExtResource("5_twuis")
+
+[node name="part 4" type="Node2D" parent="."]
+position = Vector2(1151, 0)
+
+[node name="1" type="Sprite2D" parent="part 4"]
+modulate = Color(0.913725, 0.854902, 0.87451, 1)
+position = Vector2(288, 162)
+texture = ExtResource("1_4dwvx")
+
+[node name="2" type="Sprite2D" parent="part 4"]
+position = Vector2(288, 162)
+texture = ExtResource("2_5ggay")
+
+[node name="3" type="Sprite2D" parent="part 4"]
+modulate = Color(1, 0.898039, 0.870588, 1)
+position = Vector2(288, 162)
+texture = ExtResource("3_txskm")
+
+[node name="4" type="Sprite2D" parent="part 4"]
+modulate = Color(1, 0.898039, 0.870588, 1)
+position = Vector2(288, 161)
+texture = ExtResource("4_fl3mw")
+
+[node name="5" type="Sprite2D" parent="part 4"]
+modulate = Color(1, 0.898039, 0.870588, 1)
+position = Vector2(288, 162)
 texture = ExtResource("5_twuis")

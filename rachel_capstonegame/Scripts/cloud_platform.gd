@@ -3,7 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Cloud1.texture = [CLOUD_1,CLOUD_3,CLOUD_4,CLOUD_7,CLOUD_10].pick_random()
+	$Cloud3.texture = [CLOUD_1,CLOUD_3,CLOUD_4,CLOUD_7,CLOUD_10].pick_random()
 	state_root.now_state ="idle"
 
 

@@ -1,15 +1,13 @@
-[gd_scene load_steps=17 format=4 uid="uid://bnna6d5bk4te0"]
+[gd_scene load_steps=15 format=4 uid="uid://dbly5830dab1e"]
 
 [ext_resource type="PackedScene" uid="uid://d4g3dout8m41v" path="res://Scene/cloud platform.tscn" id="1_w1sh3"]
 [ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="1_ypirc"]
-[ext_resource type="Script" path="res://start platform.gd" id="2_devd2"]
 [ext_resource type="PackedScene" uid="uid://t20soxfr7qtq" path="res://Scene/stars.tscn" id="2_loiko"]
 [ext_resource type="PackedScene" uid="uid://or6unedhd5cj" path="res://Scene/character.tscn" id="3_i7x1n"]
-[ext_resource type="Script" path="res://Scripts/cloud_platform.gd" id="3_r1u1u"]
+[ext_resource type="Script" path="res://Scripts/end_platform.gd" id="4_dbjjv"]
 [ext_resource type="Texture2D" uid="uid://b6v8aoonbp717" path="res://Assets/StartEndPlatform_tileset.png" id="4_gcibh"]
-[ext_resource type="Script" path="res://Scripts/character.gd" id="4_i2hws"]
-[ext_resource type="Script" path="res://camera.gd" id="6_o5rce"]
 [ext_resource type="Script" path="res://Scripts/start_platform.gd" id="6_xqqbo"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="7_qv6hn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2mdxv"]
 texture = ExtResource("4_gcibh")
@@ -512,7 +510,6 @@ scale = Vector2(1.2, 1.2)
 
 [node name="start platform" type="StaticBody2D" parent="."]
 position = Vector2(1, 255)
-script = ExtResource("2_devd2")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="start platform"]
 tile_map_data = PackedByteArray("AAAAAP//AAASAAkAAAAAAAAAAAASAAoAAAAAAAEAAAASAAsAAAAAAAIAAAASAAwAAAAAAAMAAAASAA0AAAAAAAQAAAASAA4AAAAAAAUAAAASAA8AAAABAP//AAATAAkAAAABAAAAAAATAAoAAAABAAEAAAATAAsAAAABAAIAAAATAAwAAAABAAMAAAATAA0AAAABAAQAAAATAA4AAAABAAUAAAATAA8AAAACAP//AAAUAAkAAAACAAAAAAAUAAoAAAACAAEAAAAUAAsAAAACAAIAAAAUAAwAAAACAAMAAAAUAA0AAAACAAQAAAAUAA4AAAACAAUAAAAUAA8AAAADAP//AAAVAAkAAAADAAAAAAAVAAoAAAADAAEAAAAVAAsAAAADAAIAAAAVAAwAAAADAAMAAAAVAA0AAAADAAQAAAAVAA4AAAADAAUAAAAVAA8AAAAEAP//AAAWAAkAAAAEAAAAAAAWAAoAAAAEAAEAAAAWAAsAAAAEAAIAAAAWAAwAAAAEAAMAAAAWAA0AAAAEAAQAAAAWAA4AAAAEAAUAAAAWAA8AAAAFAP//AAASAAkAAAAFAAAAAAASAAoAAAAFAAEAAAASAAsAAAAFAAIAAAASAAwAAAAFAAMAAAASAA0AAAAFAAQAAAASAA4AAAAFAAUAAAASAA8AAAAGAP//AAATAAkAAAAGAAAAAAATAAoAAAAGAAEAAAATAAsAAAAGAAIAAAATAAwAAAAGAAMAAAATAA0AAAAGAAQAAAATAA4AAAAGAAUAAAATAA8AAAAHAP//AAAUAAkAAAAHAAAAAAAUAAoAAAAHAAEAAAAUAAsAAAAHAAIAAAAUAAwAAAAHAAMAAAAUAA0AAAAHAAQAAAAUAA4AAAAHAAUAAAAUAA8AAAAIAP//AAAVAAkAAAAIAAAAAAAVAAoAAAAIAAEAAAAVAAsAAAAIAAIAAAAVAAwAAAAIAAMAAAAVAA0AAAAIAAQAAAAVAA4AAAAIAAUAAAAVAA8AAAAJAP//AAAWAAkAAAAJAAAAAAAWAAoAAAAJAAEAAAAWAAsAAAAJAAIAAAAWAAwAAAAJAAMAAAAWAA0AAAAJAAQAAAAWAA4AAAAJAAUAAAAWAA8AAAD7////AAASAAkAAAD7/wAAAAASAAoAAAD7/wEAAAASAAsAAAD7/wIAAAASAAwAAAD7/wMAAAASAA0AAAD7/wQAAAASAA4AAAD7/wUAAAASAA8AAAD8////AAATAAkAAAD8/wAAAAATAAoAAAD8/wEAAAATAAsAAAD8/wIAAAATAAwAAAD8/wMAAAATAA0AAAD8/wQAAAATAA4AAAD8/wUAAAATAA8AAAD9////AAAUAAkAAAD9/wAAAAAUAAoAAAD9/wEAAAAUAAsAAAD9/wIAAAAUAAwAAAD9/wMAAAAUAA0AAAD9/wQAAAAUAA4AAAD9/wUAAAAUAA8AAAD+////AAAVAAkAAAD+/wAAAAAVAAoAAAD+/wEAAAAVAAsAAAD+/wIAAAAVAAwAAAD+/wMAAAAVAA0AAAD+/wQAAAAVAA4AAAD+/wUAAAAVAA8AAAD/////AAAWAAkAAAD//wAAAAAWAAoAAAD//wEAAAAWAAsAAAD//wIAAAAWAAwAAAD//wMAAAAWAA0AAAD//wQAAAAWAA4AAAD//wUAAAAWAA8AAAAKAP//AAAYAAEAAAAKAAAAAAAYAAIAAAAKAAEAAAAYAAMAAAAKAAIAAAAYAAQAAAAKAAMAAAAYAAUAAAAKAAQAAAAYAAYAAAAKAAUAAAAYAAcAAAALAP//AAAZAAEAAAALAAAAAAAZAAIAAAALAAEAAAAZAAMAAAALAAIAAAAZAAQAAAALAAMAAAAZAAUAAAALAAQAAAAZAAYAAAALAAUAAAAZAAcAAAD5////AAAUAAEAAAD5/wAAAAAUAAIAAAD5/wEAAAAUAAMAAAD5/wIAAAAUAAQAAAD5/wMAAAAUAAUAAAD5/wQAAAAUAAYAAAD5/wUAAAAUAAcAAAD6////AAAVAAEAAAD6/wAAAAAVAAIAAAD6/wEAAAAVAAMAAAD6/wIAAAAVAAQAAAD6/wMAAAAVAAUAAAD6/wQAAAAVAAYAAAD6/wUAAAAVAAcAAAA=")
@@ -532,20 +529,18 @@ tile_set = SubResource("TileSet_6v64p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="end platform"]
 position = Vector2(1087, 309)
 shape = SubResource("RectangleShape2D_grdbo")
+script = ExtResource("4_dbjjv")
 
 [node name="star" parent="." instance=ExtResource("2_loiko")]
 position = Vector2(571, 120)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_i7x1n")]
 position = Vector2(-12, 214)
-script = ExtResource("4_i2hws")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(144, 150)
 zoom = Vector2(2, 2)
-script = ExtResource("6_o5rce")
-scroll_speed = 10.0
+script = ExtResource("7_qv6hn")
 
 [node name="moving cloud" parent="Camera2D" instance=ExtResource("1_w1sh3")]
 position = Vector2(30, -114)
-script = ExtResource("3_r1u1u")
