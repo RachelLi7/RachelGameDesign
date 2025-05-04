@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://g3wdqglmj87e"]
+[gd_scene load_steps=20 format=4 uid="uid://g3wdqglmj87e"]
 
 [ext_resource type="Script" path="res://Scripts/main_scene.gd" id="1_qu3xc"]
 [ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="1_ypirc"]
@@ -563,6 +563,9 @@ func game_over():
 	
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_575yb"]
+size = Vector2(1810, 189)
+
 [node name="level 1" type="Node2D"]
 script = ExtResource("1_qu3xc")
 metadata/_edit_horizontal_guides_ = [228.0, 324.0, 256.0]
@@ -614,9 +617,15 @@ position = Vector2(-12, 214)
 script = SubResource("GDScript_sckqh")
 speed = 100.0
 jump_velocity = -400.0
-gravity = 900.0
 death_jump_velocity = -300.0
 
+[node name="falling_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="falling_area"]
+position = Vector2(744, 446.5)
+shape = SubResource("RectangleShape2D_575yb")
+
 [connection signal="area_entered" from="portal/AnimatedSprite2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="falling_area" to="." method="_on_falling_area_area_entered"]
 
 [editable path="portal"]

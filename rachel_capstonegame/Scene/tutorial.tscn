@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjevoufs1ply5"]
+[gd_scene load_steps=11 format=3 uid="uid://bjevoufs1ply5"]
 
 [ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="1_hc6tl"]
+[ext_resource type="Script" path="res://Scripts/tutorial.gd" id="1_nlqwd"]
 [ext_resource type="FontFile" uid="uid://rjep0e387sn7" path="res://Assets/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="2_tmvtd"]
 [ext_resource type="Texture2D" uid="uid://befuc0kxxrp5x" path="res://Assets/star.png" id="3_su3vb"]
 [ext_resource type="FontFile" uid="uid://dohh70ss8vjk3" path="res://Assets/Abaddon_Fonts_v1.2/Abaddon Light.ttf" id="4_26ulx"]
@@ -24,6 +25,7 @@ texture = ExtResource("5_l8r4q")
 texture = ExtResource("5_l8r4q")
 
 [node name="Tutorial" type="Node2D"]
+script = ExtResource("1_nlqwd")
 
 [node name="background" parent="." instance=ExtResource("1_hc6tl")]
 
@@ -40,6 +42,7 @@ color = Color(0.258824, 0.0941176, 0.0117647, 0.584314)
 
 [node name="Title" type="Label" parent="ColorRect"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 306.0
 offset_top = 17.0
 offset_right = 464.0
@@ -61,6 +64,7 @@ texture = ExtResource("3_su3vb")
 
 [node name="background story" type="Label" parent="ColorRect"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 17.0
 offset_top = 17.0
 offset_right = 261.0
@@ -83,6 +87,7 @@ label_settings = SubResource("LabelSettings_nie63")
 
 [node name="setting" type="Label" parent="ColorRect"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 17.0
 offset_top = 186.0
 offset_right = 439.0
@@ -92,7 +97,7 @@ Use \"A\"  and \"D\" to move and \"W\" to  jump.
 Click first time to let the cloud fall, and click the second time to stop the cloud."
 label_settings = SubResource("LabelSettings_nie63")
 
-[node name="Start" type="Button" parent="ColorRect"]
+[node name="Close" type="Button" parent="ColorRect"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 456.0
@@ -106,3 +111,5 @@ theme_override_font_sizes/font_size = 10
 theme_override_styles/hover = SubResource("StyleBoxTexture_kosvk")
 theme_override_styles/normal = SubResource("StyleBoxTexture_w0snq")
 text = "Close"
+
+[connection signal="pressed" from="ColorRect/Close" to="." method="_on_close_pressed"]

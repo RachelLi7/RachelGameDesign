@@ -9,7 +9,7 @@ func tick(delta):
 
 func enter_state():
 	now_animation = "jump up"
-	juese.velocity.y = -60
+	juese.velocity.y = -400
 	
 func exit_state():
 	pass
@@ -19,3 +19,4 @@ func Animation_end(name):
 	if state_root.now_state == self.name and name == now_animation:
 		if now_animation == "jump up":
 			now_animation = "jump"
+			juese.animated_sprite.play("jump")

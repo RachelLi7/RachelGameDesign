@@ -11,5 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_close_pressed() -> void:
+func _on_back_to_title_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/Begin Scene.tscn")

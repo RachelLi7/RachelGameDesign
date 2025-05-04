@@ -4,6 +4,7 @@ class_name Player
 
 
 @onready var state_root: State_root = $state_root
+@export var gravity: float = 900.0
 
 
 
