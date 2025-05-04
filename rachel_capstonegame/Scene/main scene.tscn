@@ -1,15 +1,15 @@
 [gd_scene load_steps=17 format=4 uid="uid://bnna6d5bk4te0"]
 
-[ext_resource type="PackedScene" uid="uid://5nk2fhfe04xy" path="res://cloud platform.tscn" id="1_w1sh3"]
-[ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://background_sky.tscn" id="1_ypirc"]
+[ext_resource type="PackedScene" uid="uid://d4g3dout8m41v" path="res://Scene/cloud platform.tscn" id="1_w1sh3"]
+[ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://Scene/background_sky.tscn" id="1_ypirc"]
 [ext_resource type="Script" path="res://start platform.gd" id="2_devd2"]
-[ext_resource type="PackedScene" uid="uid://bk1vmv1hchorx" path="res://stars.tscn" id="2_loiko"]
-[ext_resource type="PackedScene" uid="uid://c4fqfjkv1lsqc" path="res://character.tscn" id="3_i7x1n"]
-[ext_resource type="Script" path="res://cloud_platform.gd" id="3_r1u1u"]
+[ext_resource type="PackedScene" uid="uid://t20soxfr7qtq" path="res://Scene/stars.tscn" id="2_loiko"]
+[ext_resource type="PackedScene" uid="uid://or6unedhd5cj" path="res://Scene/character.tscn" id="3_i7x1n"]
+[ext_resource type="Script" path="res://Scripts/cloud_platform.gd" id="3_r1u1u"]
 [ext_resource type="Texture2D" uid="uid://b6v8aoonbp717" path="res://Assets/StartEndPlatform_tileset.png" id="4_gcibh"]
-[ext_resource type="Script" path="res://character.gd" id="4_i2hws"]
+[ext_resource type="Script" path="res://Scripts/character.gd" id="4_i2hws"]
 [ext_resource type="Script" path="res://camera.gd" id="6_o5rce"]
-[ext_resource type="Script" path="res://start_platform.gd" id="6_xqqbo"]
+[ext_resource type="Script" path="res://Scripts/start_platform.gd" id="6_xqqbo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2mdxv"]
 texture = ExtResource("4_gcibh")

@@ -1,55 +1,47 @@
 extends CharacterBody2D
 
+class_name Player
 
-@export var speed: float = 100.0
-@export var jump_velocity: float = -400.0
-@export var gravity: float = 900.0
 
-var is_dead = false
-@export var death_jump_velocity: float = -300.0
+@onready var state_root: State_root = $state_root
 
-@onready var animated_sprite_2d = $AnimatedSprite2D
+
+
+func _ready() -> void:
+	add_to_group("character")
+
 
 func _physics_process(delta: float) -> void:
-	
-	# dead situiation
-	if is_dead:
-		velocity.y += gravity * delta
-		move_and_slide()
-		return
-	
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("up") and is_on_floor():
-		animated_sprite_2d.play("jump")
-		velocity.y = jump_velocity
-		
-
-	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("left", "right")
-	if direction:
-		animated_sprite_2d.play("walk")
-		velocity.x = direction * speed
-		
-		if direction == -1:
-			animated_sprite_2d.flip_h = true
-		else:
-			animated_sprite_2d.flip_h = false
+		velocity.y += 90 * delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		animated_sprite_2d.play("default")
+		pass
 	
-	
-	
+	if not state_root.now_state in ["fall","die"]:
+		change_dir()
 	move_and_slide()
+	state_root.run(delta)
+
+
 	
-	
-func game_over():
-	if is_dead: 
-		return
-	is_dead = true
-	velocity.x = 0
-	velocity.y = death_jump_velocity
+func move_ment():
+	var dir = Input.get_axis("left","right")
+	if dir:
+		velocity.x = dir * 60
+		return true
+	else:
+		velocity.x = 0
+		return false
+		
+
+func change_dir():
+	var dir = Input.get_axis("left","right")
+	if dir > 0:
+		$pic.scale.x = 1
+	elif  dir < 0:
+		$"pic".scale.x = -1
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	get_tree().get_first_node_in_group("map").gameover.show()
