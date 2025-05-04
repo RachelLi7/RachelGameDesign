@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://or6unedhd5cj"]
+[gd_scene load_steps=29 format=3 uid="uid://c4fqfjkv1lsqc"]
 
 [ext_resource type="Texture2D" uid="uid://e0tj5qai2usq" path="res://Assets/Fox Sprite Sheet.png" id="1_c3wns"]
 [ext_resource type="Script" path="res://character.gd" id="1_f2qyt"]

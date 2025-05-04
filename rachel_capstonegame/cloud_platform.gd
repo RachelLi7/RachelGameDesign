@@ -1,6 +1,5 @@
 extends Node2D
 
-# 允许外部识别
 class_name CloudManager
 
 # 常量
@@ -24,7 +23,6 @@ func _ready() -> void:
 	add_to_group("cloud_creator")
 	randomize()
 	
-	# 如果自己有贴图，随机赋值
 	if has_node("Cloud1"):
 		$Cloud1.texture = CLOUD_TEXTURES.pick_random()
 	

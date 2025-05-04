@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=4 uid="uid://g3wdqglmj87e"]
+[gd_scene load_steps=17 format=4 uid="uid://bnna6d5bk4te0"]
 
-[ext_resource type="PackedScene" path="res://cloud platform.tscn" id="1_w1sh3"]
-[ext_resource type="PackedScene" path="res://background_sky.tscn" id="1_ypirc"]
+[ext_resource type="PackedScene" uid="uid://5nk2fhfe04xy" path="res://cloud platform.tscn" id="1_w1sh3"]
+[ext_resource type="PackedScene" uid="uid://cx5q0cyt5lxdj" path="res://background_sky.tscn" id="1_ypirc"]
 [ext_resource type="Script" path="res://start platform.gd" id="2_devd2"]
-[ext_resource type="PackedScene" uid="uid://t20soxfr7qtq" path="res://stars.tscn" id="2_loiko"]
-[ext_resource type="PackedScene" uid="uid://or6unedhd5cj" path="res://character.tscn" id="3_i7x1n"]
+[ext_resource type="PackedScene" uid="uid://bk1vmv1hchorx" path="res://stars.tscn" id="2_loiko"]
+[ext_resource type="PackedScene" uid="uid://c4fqfjkv1lsqc" path="res://character.tscn" id="3_i7x1n"]
 [ext_resource type="Script" path="res://cloud_platform.gd" id="3_r1u1u"]
 [ext_resource type="Texture2D" uid="uid://b6v8aoonbp717" path="res://Assets/StartEndPlatform_tileset.png" id="4_gcibh"]
+[ext_resource type="Script" path="res://character.gd" id="4_i2hws"]
 [ext_resource type="Script" path="res://camera.gd" id="6_o5rce"]
 [ext_resource type="Script" path="res://start_platform.gd" id="6_xqqbo"]
 
@@ -502,65 +503,6 @@ sources/0 = SubResource("TileSetAtlasSource_ishio")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grdbo"]
 size = Vector2(236, 110)
 
-[sub_resource type="GDScript" id="GDScript_sckqh"]
-script/source = "extends CharacterBody2D
-
-
-@export var speed: float = 100.0
-@export var jump_velocity: float = -400.0
-@export var gravity: float = 900.0
-
-var is_dead = false
-@export var death_jump_velocity: float = -300.0
-
-@onready var animated_sprite_2d = $AnimatedSprite2D
-
-func _physics_process(delta: float) -> void:
-	
-	# dead situiation
-	if is_dead:
-		velocity.y += gravity * delta
-		move_and_slide()
-		return
-	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed(\"up\") and is_on_floor():
-		animated_sprite_2d.play(\"jump\")
-		velocity.y = jump_velocity
-		
-
-	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis(\"left\", \"right\")
-	if direction:
-		animated_sprite_2d.play(\"walk\")
-		velocity.x = direction * speed
-		
-		if direction == -1:
-			animated_sprite_2d.flip_h = true
-		else:
-			animated_sprite_2d.flip_h = false
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		animated_sprite_2d.play(\"default\")
-	
-	
-	
-	move_and_slide()
-	
-	
-func game_over():
-	if is_dead: 
-		return
-	is_dead = true
-	velocity.x = 0
-	velocity.y = death_jump_velocity
-	
-"
-
 [node name="Node2D" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [228.0, 324.0, 256.0]
 
@@ -596,7 +538,7 @@ position = Vector2(571, 120)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_i7x1n")]
 position = Vector2(-12, 214)
-script = SubResource("GDScript_sckqh")
+script = ExtResource("4_i2hws")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(144, 150)
